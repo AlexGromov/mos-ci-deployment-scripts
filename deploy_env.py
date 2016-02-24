@@ -14,6 +14,7 @@
 
 import os
 
+from proboscis.asserts import assert_true
 from proboscis import factory
 
 from system_test.helpers.decorators import action
@@ -56,7 +57,7 @@ class DeployEnv(actions_base.ActionsBase):
         'network_check',
         'deploy_cluster',
         'network_check',
-        'health_check',
+        'health_check_with_repeat',
     ]
 
     def __init__(self, config_file=None):
@@ -133,6 +134,23 @@ class DeployEnv(actions_base.ActionsBase):
             self.plugin_path = self.plugins_paths[plugin_name]
             self.enable_plugin()
             logger.info("{} plugin has been enabled.".format(plugin_name))
+
+    @deferred_decorator([make_snapshot_if_step_fail])
+    @action
+    def health_check_with_repeat(self):
+        """Make some attempts to run health_check"""
+        count = os.environ.get("HEALTH_CHECK_ATTEMPTS_COUNT", 3)
+        for attempt in range(count):
+            logger.info("{0} attempt for healthcheck.".format(attempt))
+            try:
+                self.health_check()
+                break
+            except AssertionError:
+                assert_true(
+                    attempt + 1 < count,
+                    "Max count of attempts for healthcheck is reached."
+                )
+                continue
 
 
 @factory
