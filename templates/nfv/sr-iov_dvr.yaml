@@ -43,7 +43,6 @@ template:
     # Network pools used by the environment
       fuelweb_admin-pool01:
         net: *pool_default
-        params: {tag: 0}
       public-pool01:
         net: *pool_default
         params: {tag: 200}
@@ -55,10 +54,9 @@ template:
         params: {tag: 202}
       private-pool01:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: null}
       fuelweb_admin-pool02:
         net: *pool_default
-        params: {tag: 0}
       public-pool02:
         net: *pool_default
         params: {tag: 200}
@@ -70,7 +68,7 @@ template:
         params: {tag: 202}
       private-pool02:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: null}
 
     groups:
      - name: default
@@ -301,31 +299,31 @@ template:
   name: 1 Controller, 2 Compute+Ceph, 2 Compute+Ceph SR-IOV, Neutron, VLAN
   slaves: 5
 
-update_nodes:
-  - name: slave-04
-    attributes:
-      cpu_pinning/nova/value: 18
-      hugepages/nova/value/1048576: 10
-      hugepages/nova/value/2048: 20000
-    interfaces:
-      - number: 4
-        params:
-          interface_properties/sriov/enabled: true
-          interface_properties/sriov/sriov_numvfs: 8
-          interface_properties/sriov/sriov_totalvfs: 63
-  - name: slave-05
-    attributes:
-      cpu_pinning/nova/value: 18
-      hugepages/nova/value/1048576: 10
-      hugepages/nova/value/2048: 20000
-    interfaces:
-      - number: 4
-        params:
-          interface_properties/sriov/enabled: true
-          interface_properties/sriov/sriov_numvfs: 8
-          interface_properties/sriov/sriov_totalvfs: 63
-
-overrides:
-  networks:
-    networking_parameters:
-      vlan_range: [960, 1000]
+#update_nodes:
+#  - name: slave-04
+#    attributes:
+#      cpu_pinning/nova/value: 18
+#      hugepages/nova/value/1048576: 10
+#      hugepages/nova/value/2048: 20000
+#    interfaces:
+#      - number: 4
+#        params:
+#          interface_properties/sriov/enabled: true
+#          interface_properties/sriov/sriov_numvfs: 8
+#          interface_properties/sriov/sriov_totalvfs: 63
+#  - name: slave-05
+#    attributes:
+#      cpu_pinning/nova/value: 18
+#      hugepages/nova/value/1048576: 10
+#      hugepages/nova/value/2048: 20000
+#    interfaces:
+#      - number: 4
+#        params:
+#          interface_properties/sriov/enabled: true
+#          interface_properties/sriov/sriov_numvfs: 8
+#          interface_properties/sriov/sriov_totalvfs: 63
+#
+#overrides:
+#  networks:
+#    networking_parameters:
+#      vlan_range: [960, 1000]

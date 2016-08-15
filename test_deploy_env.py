@@ -57,7 +57,7 @@ class DeployEnv(ActionTest, BaseActions):
         'network_check',
         'deploy_cluster',
         'network_check',
-        'health_check',
+        'health_check'
     ]
 
     def __init__(self, config_file=None):

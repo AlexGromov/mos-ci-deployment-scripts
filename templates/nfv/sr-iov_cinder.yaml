@@ -1,6 +1,6 @@
 template:
   cluster_template:
-    name: sr-iov_ceph
+    name: sr-iov_cinder
     network:
       neutron-dvr: false
       neutron-l2-pop: false
@@ -57,7 +57,7 @@ template:
         params: {tag: 202}
       private-pool01:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: 960}
       fuelweb_admin-pool02:
         net: *pool_default
         params: {tag: 0}
@@ -72,7 +72,7 @@ template:
         params: {tag: 202}
       private-pool02:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: 960}
 
     groups:
      - name: default
@@ -258,7 +258,6 @@ template:
                mac_address: 00:1b:21:8a:7b:18
              - label: iface4
                mac_address: 00:1b:21:8a:7b:19
-               features: ['sriov']
             network_config:
               iface1:
                 networks:
@@ -288,7 +287,6 @@ template:
                mac_address: 00:1b:21:89:47:90
              - label: iface4
                mac_address: 00:1b:21:89:47:91
-               features: ['sriov']
             network_config:
               iface1:
                 networks:
@@ -334,4 +332,4 @@ update_nodes:
 overrides:
   networks:
     networking_parameters:
-      vlan_range: [960, 1000]
+      vlan_range: [961, 1000]

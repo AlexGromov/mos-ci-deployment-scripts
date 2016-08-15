@@ -43,7 +43,6 @@ template:
     # Network pools used by the environment
       fuelweb_admin-pool01:
         net: *pool_default
-        params: {tag: 0}
       public-pool01:
         net: *pool_default
         params: {tag: 200}
@@ -55,10 +54,9 @@ template:
         params: {tag: 202}
       private-pool01:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: null}
       fuelweb_admin-pool02:
         net: *pool_default
-        params: {tag: 0}
       public-pool02:
         net: *pool_default
         params: {tag: 200}
@@ -70,7 +68,7 @@ template:
         params: {tag: 202}
       private-pool02:
         net: *pool_default
-        params: {tag: 203}
+        params: {tag: null}
 
     groups:
      - name: default
@@ -319,7 +317,7 @@ update_nodes:
         params:
           interface_properties/sriov/enabled: true
           interface_properties/sriov/sriov_numvfs: 8
-          interface_properties/sriov/sriov_totalvfs: 63
+          # interface_properties/sriov/sriov_totalvfs: 63
   - name: slave-05
     attributes:
       cpu_pinning/nova/value: 18
@@ -330,7 +328,7 @@ update_nodes:
         params:
           interface_properties/sriov/enabled: true
           interface_properties/sriov/sriov_numvfs: 8
-          interface_properties/sriov/sriov_totalvfs: 63
+          # interface_properties/sriov/sriov_totalvfs: 63
 
 overrides:
   networks:
