@@ -110,7 +110,7 @@ template:
          params:
            connection_string: !os_env CONNECTION_STRING, qemu:///system
            storage_pool_name: !os_env STORAGE_POOL_NAME, default
-           stp: True
+           stp: False
            hpet: False
            use_host_cpu: !os_env DRIVER_USE_HOST_CPU, true
 
