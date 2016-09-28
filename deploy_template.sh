@@ -126,6 +126,9 @@ if [ "${INTERFACE_MODEL}" == 'virtio' ]; then
     done
 fi
 
+# wa for fuel-qa
+git reset --hard HEAD~10
+
 # create new environment
 ./run_system_test.py run 'system_test.deploy_env' --with-config $CONFIG_NAME
 
